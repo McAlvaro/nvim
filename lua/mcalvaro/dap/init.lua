@@ -1,4 +1,4 @@
-vim.cmd('packadd nvim-dap')
+-- vim.cmd('packadd nvim-dap')
 local dap, dapui, hydra = require "dap", require "dapui", require "hydra"
 
 -- Set Icons
