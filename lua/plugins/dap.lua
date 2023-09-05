@@ -1,6 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
-	lazy = false,
+	lazy = true,
 	dependencies = {
 		"jay-babu/mason-nvim-dap.nvim",
 		config = function()
