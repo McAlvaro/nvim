@@ -216,4 +216,4 @@ map('n', '<Leader>xp', [[:RunProject tab<CR>]], {})                             
 
 map('n', '<Leader>xc', [[:RunClose <CR>]], {})                                              -- Close Run Code
 
-
+map('n', '<Leader>gl', [[:Gitsigns blame_line <CR>]], {})                                              -- See author line
