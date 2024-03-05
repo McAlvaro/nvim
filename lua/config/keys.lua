@@ -212,10 +212,22 @@ map('n', '<Leader>xf', [[:RunFile <CR>]], {})                                   
 
 map('n', '<Leader>xt', [[:RunFile tab<CR>]], {})                                            -- Run Current File in Tab
 
-map('n', '<Leader>xp', [[:RunProject tab<CR>]], {})                                            -- Run Current File in Tab
+map('n', '<Leader>xp', [[:RunProject tab<CR>]], {})                                         -- Run Current File in Tab
 
 map('n', '<Leader>xc', [[:RunClose <CR>]], {})                                              -- Close Run Code
 
-map('n', '<Leader>gl', [[:Gitsigns blame_line <CR>]], {})                                              -- See author line
+map('n', '<Leader>gl', [[:Gitsigns blame_line <CR>]], {})                                   -- See author line
 
-map('n', '<C-j>', [[:lua create_java_class()<CR>]], {})                                          -- Save as current file
+map('n', '<Leader>zs', [[:TermSelect <CR>]], {})                                            -- Select Terminal
+
+-- map('n', '<Leader>rp', [[:ToggleTerm <CR>:startinsert<CR> <C-c> !!<CR> <CR> <C-\><C-N><CR>]], {})                                          -- Save as current file
+
+map('n', '<Leader>sp', [[:lua start_spring_server() <CR>]], {})                             -- Start Maven Server
+
+map('n', '<Leader>rp', [[:lua restart_spring_server() <CR>]], {})                           -- Restart Maven Server
+
+map('n', '<Leader>op', [[:lua stop_spring_server() <CR>]], {})                              -- Stop Maven Server
+
+map('n', '<Leader>nj', [[:lua create_java_class()<CR>]], {})                                -- Create new Java File
+
+

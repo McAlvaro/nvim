@@ -17,6 +17,7 @@ require "config.lazy"
 
 require "mcalvaro.utils.cheatsheet"
 require "mcalvaro.utils.saveas"
+require "mcalvaro.utils.springproject"
 require "mcalvaro.utils.telescopefb"
 require "mcalvaro.utils.create_class"
 require('telescope').load_extension "file_browser"
