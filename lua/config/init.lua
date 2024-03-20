@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("User", {
 require "config.lazy"
 
 require "mcalvaro.utils.cheatsheet"
+require "mcalvaro.utils.lsp-formatter-filter"
 require "mcalvaro.utils.saveas"
 require "mcalvaro.utils.springproject"
 require "mcalvaro.utils.telescopefb"

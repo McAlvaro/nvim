@@ -28,7 +28,7 @@ return setmetatable({
 			on_attach = lsp_attach,
 			flags = lsp_flags,
 			capabilities = capabilities,
-			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade", "vue" },
+			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "blade" },
 		}
 	end,
 	sumneko_lua = function()
@@ -57,6 +57,20 @@ return setmetatable({
 		return {
 			on_attach = lsp_attach,
 			flags = lsp_flags,
+			init_options = {
+				plugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = "/home/alvaro/.nvm/versions/node/v20.9.0/lib/node_modules/@vue/typescript-plugin",
+						languages = { "typescript", "vue" },
+					},
+				},
+			},
+			filetypes = {
+				"javascript",
+				"typescript",
+				"vue",
+			},
 			settings = {
 				typescript = {
 					inlayHints = {
