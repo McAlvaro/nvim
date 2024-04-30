@@ -13,6 +13,8 @@ return {
 		"anuvyklack/hydra.nvim",
 		"nvim-telescope/telescope-dap.nvim",
 		"rcarriga/cmp-dap",
+        "nvim-neotest/nvim-nio",
+        "mfussenegger/nvim-jdtls"
 	},
 	keys = {
 		{ "<leader>d", desc = "Open Debug menu" },
