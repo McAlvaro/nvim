@@ -109,20 +109,9 @@ return setmetatable({
 			os_config = "mac"
 		end
 
-		-- vim.list_extend(
-			-- bundles,
-			-- vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar",1), "\n")
-		-- )
-		-- vim.list_extend(
-			-- bundles,
-			-- vim.split(
-			-- 	vim.fn.glob(
-			-- 		mason_path .. "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1
-			-- 	),
-			-- 	"\n"
-			-- )
-		-- )
-		-- -- vim.builtin.dap.active = true
+		local jdtls_path = require("mason-registry").get_package("jdtls"):get_install_path()
+		local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
+		local java_test_path = require("mason-registry").get_package("java-test"):get_install_path()
 
 		return {
 			filetypes = {
@@ -141,13 +130,11 @@ return setmetatable({
 				"java.base/java.util=ALL-UNNAMED",
 				"--add-opens",
 				"java.base/java.lang=ALL-UNNAMED",
-				"-javaagent:" .. home .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+				"-javaagent:" .. jdtls_path .. "/lombok.jar",
 				"-jar",
-				vim.fn.glob(
-					home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"
-				),
+				vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
 				"-configuration",
-				home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. os_config,
+				jdtls_path .. "/config_" .. os_config,
 				"-data",
 				workspace_dir,
 			},
@@ -191,18 +178,18 @@ return setmetatable({
 			},
 			init_options = {
 				bundles = {
-                    "/home/alvaro/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.50.0.jar",
-                    				vim.fn.glob("/home/alvaro/.local/share/nvim/mason/packages/java-test/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
-
-                },
+					java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-0.50.0.jar",
+					vim.fn.glob(java_test_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
+				},
 			},
 			on_attach = function(client, bufnr)
 				local _, _ = pcall(vim.lsp.codelens.refresh)
+				require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
 				require("jdtls.dap").setup_dap_main_class_configs()
 				require("vim.lsp").on_attach(client, bufnr)
 				-- local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
 				-- if status_ok then
-					-- jdtls_dap.setup_dap_main_class_configs()
+				-- jdtls_dap.setup_dap_main_class_configs()
 				-- end
 			end,
 		}
