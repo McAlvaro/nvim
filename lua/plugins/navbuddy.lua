@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		{
 			"SmiteshP/nvim-navbuddy",
+            commit = "f34237e",
 			dependencies = {
 				"SmiteshP/nvim-navic",
 				"MunifTanjim/nui.nvim",

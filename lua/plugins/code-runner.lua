@@ -8,6 +8,7 @@ return {
             sh = "bash",
             php = "php",
             javascript = "node",
+            java = "java"
         },
 
     },

@@ -138,7 +138,8 @@ map('n', 'RR', [[:LspRestart <CR>]], {})        --Restart LSP
 
 map('n', '<Leader>gtt', [[:Telescope lsp_type_definitions  <CR>]], {})             --Type Definition
 
-map('n', '<Leader>rf', [[:lua vim.lsp.buf.references() <CR>]], {})                  --References
+-- map('n', '<Leader>rf', [[:lua vim.lsp.buf.references() <CR>]], {})                  --References
+map('n', '<Leader>rf', [[:Telescope lsp_references <CR>]], {})                  --References
 
 map('n', '<Leader>m', [[:MaximizerToggle <CR>]], {})                                --MaximizerToggle
 
