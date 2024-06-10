@@ -232,3 +232,30 @@ map('n', '<Leader>op', [[:lua stop_spring_server() <CR>]], {})                  
 map('n', '<Leader>nj', [[:lua create_java_class()<CR>]], {})                                -- Create new Java File
 
 
+-- Obsidian
+map('n', '<Leader>of', [[:lua require('obsidian').util.gf_passthrough() <CR>]], { expr = true})
+
+map('n', '<Leader>od', [[:lua require('obsidian').util.toggle_checkbox() <CR>]], {})
+
+map('n', '<Leader>oo', [[:ObsidianNewNoteInWorkspace <CR>]], {})
+
+map('n', '<Leader>on', [[:ObsidianNew <CR>]], {})
+
+map('n', '<Leader>ol', [[:ObsidianQuickSwitch <CR>]], {})
+
+map('n', '<Leader>odd', [[:ObsidianDailies <CR>]], {})
+
+map('n', '<Leader>oi', [[:ObsidianPasteImg <CR>]], {})
+
+map('n', '<Leader>os', [[:ObsidianSearch <CR>]], {})
+
+map('n', '<Leader>or', [[:ObsidianRename <CR>]], {})
+
+map('n', '<Leader>op', [[:ObsidianOpen <CR>]], {})
+
+map('n', '<Leader>ot', [[:ObsidianTags <CR>]], {})
+
+map('n', '<Leader>ow', [[:ObsidianWorkspace <CR>]], {})
+
+map('n', '<Leader>ont', [[:lua require('obsidian').util.insert_template('Newsletter-Issue') <CR>]], {})
+

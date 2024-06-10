@@ -26,6 +26,15 @@ actions.save_as_current_bufn = function(prompt_bufnr)
     end)
 end
 
+actions.create_obsidian_note = function (prompt_bufnr)
+
+    local workspace = action_state.get_current_picker(prompt_bufnr).finder.path
+
+    vim.schedule(function()
+        create_note(workspace)
+    end)
+end
+
 actions.insert_name_i = function(prompt_bufnr)
   local symbol = action_state.get_selected_entry().path
   actions.close(prompt_bufnr)
@@ -123,6 +132,7 @@ function file_browser(opts)
 
         attach_mappings = function(_, map)
             map("i", "<c-y>", actions.save_as_current_bufn)
+            map("i", "<c-n>", actions.create_obsidian_note)
 
             return true
         end,

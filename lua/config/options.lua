@@ -47,6 +47,8 @@ opt.splitbelow = true			-- bool: Colocar nueva ventana debajo de la actual
 
 vim.loader.enable()
 
+cmd([[autocmd VimEnter * set conceallevel=1]])
+
 cmd([[autocmd VimEnter * NvimTreeClose]]) -- Close NvimTree on init Noevim
 
 --[[ Remove Whitespace ]]
