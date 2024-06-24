@@ -251,7 +251,7 @@ map('n', '<Leader>os', [[:ObsidianSearch <CR>]], {})
 
 map('n', '<Leader>or', [[:ObsidianRename <CR>]], {})
 
-map('n', '<Leader>op', [[:ObsidianOpen <CR>]], {})
+map('n', '<Leader>ou', [[:ObsidianOpen <CR>]], {})
 
 map('n', '<Leader>ot', [[:ObsidianTags <CR>]], {})
 

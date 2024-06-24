@@ -9,13 +9,21 @@ return {
 		"hrsh7th/cmp-git",
 		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind-nvim",
-        "neovim/nvim-lspconfig",
+		"neovim/nvim-lspconfig",
 		{ "L3MON4D3/LuaSnip", version = "v1.*" },
 		"windwp/nvim-autopairs",
+		{
+			"MattiasMTS/cmp-dbee",
+			dependencies = {
+				{ "kndndrj/nvim-dbee" },
+			},
+			ft = "sql", -- optional but good to have
+			opts = {}, -- needed
+		},
 	},
 	event = "VeryLazy",
-    lazy = false,
+	lazy = false,
 	config = function()
-		require "mcalvaro.completation"
+		require("mcalvaro.completation")
 	end,
 }
