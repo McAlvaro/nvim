@@ -1,5 +1,5 @@
 return {
-  "DanilaMihailov/beacon.nvim",
-  lazy = false,
+	"DanilaMihailov/beacon.nvim",
+    commit = "a786c9a",
+	lazy = false,
 }
-

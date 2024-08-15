@@ -178,15 +178,15 @@ return setmetatable({
 			},
 			init_options = {
 				bundles = {
-					java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-0.50.0.jar",
+					java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
 					vim.fn.glob(java_test_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
 				},
 			},
 			on_attach = function(client, bufnr)
 				local _, _ = pcall(vim.lsp.codelens.refresh)
 				require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
-				require("jdtls.dap").setup_dap_main_class_configs()
 				require("vim.lsp").on_attach(client, bufnr)
+                require("jdtls.dap").setup_dap_main_class_configs()
 				-- local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
 				-- if status_ok then
 				-- jdtls_dap.setup_dap_main_class_configs()

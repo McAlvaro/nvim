@@ -26,6 +26,8 @@ map('n', '<Leader>q', [[:q <CR>]], {} )
 
 map('n', '<Leader>qq', [[:quitall <CR>]], {} )
 
+map('n', '<Leader>qd', [[:bdelete <CR>]], {} )
+
 -- Command save changes
 map('n', '<Leader>w', [[:w <CR>]], {})
 
@@ -259,3 +261,4 @@ map('n', '<Leader>ow', [[:ObsidianWorkspace <CR>]], {})
 
 map('n', '<Leader>ont', [[:lua require('obsidian').util.insert_template('Newsletter-Issue') <CR>]], {})
 
+map('n', '<Leader>bs', [[:Telescope buffers <CR>]], {})
