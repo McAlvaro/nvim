@@ -12,6 +12,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 
 		null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.autopep8,
 
 		-- php_actions.getter_setter,
 		-- php_actions.file_creator,

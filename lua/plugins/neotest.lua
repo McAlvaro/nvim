@@ -1,6 +1,7 @@
 return {
 	"nvim-neotest/neotest",
 	dependencies = {
+		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"antoinemadec/FixCursorHold.nvim",
@@ -8,11 +9,13 @@ return {
 		"rouge8/neotest-rust",
 		"nvim-neotest/neotest-plenary",
 		"nvim-neotest/neotest-vim-test",
+		"nvim-neotest/neotest-python",
 		"anuvyklack/hydra.nvim",
 		"olimorris/neotest-phpunit",
+		-- "thenbe/neotest-consumers"
 	},
 	keys = {
-		{ "<leader>nm", desc = "Open Test menu" },
+		{ "<leader>er", desc = "Open Test menu" },
 	},
 
 	config = function()
@@ -22,12 +25,18 @@ return {
 				require("neotest-go"),
 				require("neotest-rust"),
 				require("neotest-plenary"),
-				require("neotest-phpunit"),
+				require("neotest-phpunit")({
+					filter_dirs = { "vendor" },
+				}),
 				require("neotest-vim-test")({
-                    filter_dirs = { "vendor" },
+					filter_dirs = { "vendor" },
 					ignore_file_types = { "go", "lua", "rust", "php" },
 				}),
 				-- require("laravel.neotest"),
+			},
+			overseer = {
+				enabled = true,
+				force_default = true,
 			},
 		})
 
@@ -55,7 +64,7 @@ return {
 					position = "bottom",
 				},
 			},
-			body = "<leader>nm",
+			body = "<leader>er",
 			heads = {
 				{
 					"n",

@@ -171,7 +171,7 @@ return setmetatable({
 						},
 					},
 					format = {
-						enabled = false,
+						enabled = true,
 					},
 				},
 				signatureHelp = { enabled = true },
@@ -186,12 +186,22 @@ return setmetatable({
 				local _, _ = pcall(vim.lsp.codelens.refresh)
 				require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
 				require("vim.lsp").on_attach(client, bufnr)
-                require("jdtls.dap").setup_dap_main_class_configs()
+				require("jdtls.dap").setup_dap_main_class_configs()
 				-- local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
 				-- if status_ok then
 				-- jdtls_dap.setup_dap_main_class_configs()
 				-- end
 			end,
+		}
+	end,
+	pyright = function()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+		return {
+			on_attach = lsp_attach,
+			flags = lsp_flags,
+			capabilities = capabilities,
+			filetypes = { "python"},
 		}
 	end,
 }, {

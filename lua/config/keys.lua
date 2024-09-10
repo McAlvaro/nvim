@@ -81,7 +81,7 @@ map('n', '<Leader>9', [[9gt]], {})
 -- Toggle vim-tree
 map('n', 'n', [[:NvimTreeToggle]], {})
 map('n', '<Leader>r', [[:NvimTreeRefresh <CR>]], {})
-map('n', '<Leader>n', [[:NvimTreeFindFile <CR>]], {})
+map('n', '<Leader>nl', [[:NvimTreeFindFile <CR>]], {})
 
 -- vim-tree move to nav files
 map('n', '<Leader>h', [[<C-w>h]], {})
@@ -132,7 +132,7 @@ map('n', '<Leader>gn', [[:lua vim.diagnostic.goto_next() <CR>]], {})            
 
 map('n', '<Leader>gp', [[:lua vim.diagnostic.goto_prev() <CR>]], {})                --Prev
 
-map('n', '<Leader>gi', [[:lua vim.lsp.buf.implementation() <CR>]], {})              --Implementation
+map('n', '<Leader>gi', [[:Telescope lsp_implementations <CR>]], {})              --Implementation
 
 map('n', '<Leader>gh', [[:lua vim.lsp.buf.signature_help() <CR>]], {})              --Help
 
