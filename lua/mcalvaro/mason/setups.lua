@@ -53,7 +53,7 @@ return setmetatable({
 			},
 		}
 	end,
-	tsserver = function()
+	ts_ls = function()
 		return {
 			on_attach = lsp_attach,
 			flags = lsp_flags,

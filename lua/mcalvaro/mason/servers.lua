@@ -6,7 +6,7 @@ return {
 	"phpactor",
 	"rust_analyzer",
 	"lua_ls",
-	"tsserver",
+	"ts_ls",
 	"volar",
     "diagnosticls"
 }
