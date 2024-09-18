@@ -1,21 +1,25 @@
 local M = {
     job = nil,
-    port = 5173,
+    port = nil,
+    defaul_port = 5173,
 }
 
-function M.start()
+function M.start(port)
+    M.port = port or M.defaul_port
+
     M.job = vim.system(
-        { "npm", "run", "dev" },
+        { "npm", "run", "dev", "--", "--port", tostring(M.port) },
         {},
         vim.schedule_wrap(function(out)
             M.job = nil
+            M.port = nil
         end)
     )
+    vim.notify("Node Server Started on http://localhost:" .. tostring(M.port), vim.log.levels.INFO, { timeout = 2000 })
 end
 
 function M.stop()
     if M.running() then
-        -- Buscamos el proceso en el puerto 5173 y lo matamos
         vim.system(
             { "lsof", "-t", "-i", ":" .. tostring(M.port) },
             {},
@@ -34,6 +38,7 @@ function M.stop()
 
                 vim.notify("Node server stopped", vim.log.levels.INFO, { timeout = 2000 })
                 M.job = nil
+                M.port = nil
             end)
         )
     end
@@ -53,9 +58,9 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
     end,
 })
 
-vim.api.nvim_create_user_command("NodeServerStart", function()
-    M.start()
-end, {})
+vim.api.nvim_create_user_command("NodeServerStart", function(opts)
+    M.start(tonumber(opts.args))
+end, { nargs = "?" })
 
 vim.api.nvim_create_user_command("NodeServerStop", function()
     M.stop()
