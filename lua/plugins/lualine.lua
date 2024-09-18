@@ -17,6 +17,28 @@ return {
 				theme = horizon_custom,
 				icons_enabled = true,
 			},
+			sections = {
+				-- lualine_x = {
+				-- "require('mcalvaro.laravel.artisan-server').status()"
+				-- }
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = { "filename" },
+				lualine_x = {
+					{
+						require("mcalvaro.laravel.artisan-server").text,
+						cond = function()
+							return require("mcalvaro.laravel.artisan-server").running()
+						end,
+						color = { fg = "#00d75f", gui = "bold" },
+					},
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
 		})
 	end,
 }
