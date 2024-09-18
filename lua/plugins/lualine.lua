@@ -26,6 +26,13 @@ return {
 				lualine_c = { "filename" },
 				lualine_x = {
 					{
+						require("mcalvaro.node.node-server").text,
+						cond = function()
+							return require("mcalvaro.node.node-server").running()
+						end,
+						color = { fg = "#00d75f", gui = "bold" },
+					},
+					{
 						require("mcalvaro.laravel.artisan-server").text,
 						cond = function()
 							return require("mcalvaro.laravel.artisan-server").running()
