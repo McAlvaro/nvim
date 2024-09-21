@@ -149,7 +149,7 @@ return setmetatable({
 						runtimes = {
 							{
 								name = "JavaSE-21",
-								path = "/usr/lib/jvm/java-1.21.0-openjdk-amd64",
+								path = "/usr/lib/jvm/java-1.21.0-openjdk-amd64", -- Java Installation
 							},
 						},
 					},
@@ -179,18 +179,17 @@ return setmetatable({
 			init_options = {
 				bundles = {
 					java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
-					vim.fn.glob(java_test_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
+					vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
+                    vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1)
 				},
 			},
 			on_attach = function(client, bufnr)
 				local _, _ = pcall(vim.lsp.codelens.refresh)
 				require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
-				require("vim.lsp").on_attach(client, bufnr)
+				-- require("vim.lsp").on_attach(client, bufnr)
 				require("jdtls.dap").setup_dap_main_class_configs()
-				-- local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
-				-- if status_ok then
-				-- jdtls_dap.setup_dap_main_class_configs()
-				-- end
+                -- lsp_attach(client, bufnr)
+                return lsp_attach
 			end,
 		}
 	end,
