@@ -78,8 +78,14 @@ hydra {
     color = "blue",
     invoke_on_body = true,
     hint = {
-      border = "rounded",
-      position = "bottom",
+        type = "window",
+        position = "bottom",
+        float_opts = {
+            border = "rounded",
+            style = "minimal",
+            focusable = false,
+            noautocmd = true,
+        },
     },
   },
   body = "<leader>d",

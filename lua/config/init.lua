@@ -22,5 +22,6 @@ require "mcalvaro.utils.springproject"
 require "mcalvaro.utils.telescopefb"
 require "mcalvaro.utils.create_class"
 require "mcalvaro.utils.obsidian-utils"
+require "mcalvaro.laravel.composer"
 require('telescope').load_extension "file_browser"
 

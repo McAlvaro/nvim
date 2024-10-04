@@ -113,6 +113,12 @@ return setmetatable({
 		local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
 		local java_test_path = require("mason-registry").get_package("java-test"):get_install_path()
 
+        local bundles = {
+            vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+        }
+
+        vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
+
 		return {
 			filetypes = {
 				"java",
@@ -138,7 +144,8 @@ return setmetatable({
 				"-data",
 				workspace_dir,
 			},
-			root_dir = require("lspconfig.server_configurations.jdtls").default_config.root_dir,
+			root_dir = require("lspconfig.configs.jdtls").default_config.root_dir,
+			-- root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml" }),
 			settings = {
 				java = {
 					eclipse = {
@@ -177,11 +184,12 @@ return setmetatable({
 				signatureHelp = { enabled = true },
 			},
 			init_options = {
-				bundles = {
-					java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
-					vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
-                    vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1)
-				},
+				-- bundles = {
+					-- java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
+					-- vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
+                    -- vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1),
+				-- },
+                bundles = bundles,
 			},
 			on_attach = function(client, bufnr)
 				local _, _ = pcall(vim.lsp.codelens.refresh)

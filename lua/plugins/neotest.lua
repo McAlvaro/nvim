@@ -10,8 +10,10 @@ return {
 		"nvim-neotest/neotest-plenary",
 		"nvim-neotest/neotest-vim-test",
 		"nvim-neotest/neotest-python",
-		"anuvyklack/hydra.nvim",
+		-- "anuvyklack/hydra.nvim",
+		"nvimtools/hydra.nvim",
 		"olimorris/neotest-phpunit",
+		"rcasia/neotest-java",
 		-- "thenbe/neotest-consumers"
 	},
 	keys = {
@@ -28,6 +30,7 @@ return {
 				require("neotest-phpunit")({
 					filter_dirs = { "vendor" },
 				}),
+				require("neotest-java"),
 				require("neotest-vim-test")({
 					filter_dirs = { "vendor" },
 					ignore_file_types = { "go", "lua", "rust", "php" },
@@ -60,8 +63,14 @@ return {
 				color = "teal",
 				invoke_on_body = true,
 				hint = {
-					border = "rounded",
+					type = "window",
 					position = "bottom",
+					float_opts = {
+                        border = "rounded",
+						style = "minimal",
+						focusable = false,
+						noautocmd = true,
+					},
 				},
 			},
 			body = "<leader>er",
