@@ -23,5 +23,6 @@ require "mcalvaro.utils.telescopefb"
 require "mcalvaro.utils.create_class"
 require "mcalvaro.utils.obsidian-utils"
 require "mcalvaro.laravel.composer"
+require "mcalvaro.laravel.artisan"
 require('telescope').load_extension "file_browser"
 
