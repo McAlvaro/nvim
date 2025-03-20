@@ -105,7 +105,7 @@ function M.fn(node, class_type)
 		return
 	end
 
-	node = node and lib.get_last_group_node(node)
+	node = node:get_parent_of_group() or node
 	if not node or node.name == ".." then
 		node = {
 			absolute_path = cwd,
