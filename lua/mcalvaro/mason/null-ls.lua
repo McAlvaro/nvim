@@ -5,14 +5,32 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
 		-- null_ls.builtins.code_actions.gitsigns,
-		null_ls.builtins.formatting.jq,
+		-- null_ls.builtins.formatting.jq,
 		null_ls.builtins.code_actions.refactoring,
 		null_ls.builtins.formatting.alejandra,
 		-- null_ls.builtins.diagnostics.luacheck,
 		null_ls.builtins.formatting.stylua,
 
 		null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.formatting.autopep8,
+		-- null_ls.builtins.formatting.autopep8,
+		-- Python Formatter
+		null_ls.builtins.formatting.pyink,
+        null_ls.builtins.formatting.prettier.with({
+            filetypes = {
+                "javascript",
+                "typescript",
+                "css",
+                "scss",
+                "html",
+                "json",
+                "yaml",
+                "markdown",
+                "vue"  -- Específicamente para Vue
+            },
+        }),
+
+		-- Markdown formatter
+		-- null_ls.builtins.formatting.cbfmt,
 
 		-- php_actions.getter_setter,
 		-- php_actions.file_creator,
