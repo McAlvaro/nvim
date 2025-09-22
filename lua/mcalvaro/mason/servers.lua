@@ -7,7 +7,7 @@ return {
 	"rust_analyzer",
 	"lua_ls",
 	"ts_ls",
-	"volar",
+	"vue_ls",
     "diagnosticls"
 }
 

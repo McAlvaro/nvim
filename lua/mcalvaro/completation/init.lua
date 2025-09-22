@@ -1,11 +1,10 @@
 local lspkind = require("lspkind")
-lspkind.init(
-    {
-        symbol_map = {
-            Supermaven = "",
-        },
-    }
-)
+lspkind.init({
+	symbol_map = {
+		Supermaven = "",
+		BladeNav = "",
+	},
+})
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
@@ -102,16 +101,21 @@ cmp.setup({
 })
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- local lspconfig = require("lspconfig")
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require("lspconfig")["emmet_ls"].setup({
+vim.lsp.config["emmet_ls"] = {
 	capabilities = capabilities,
-})
+}
 
-require("lspconfig")["intelephense"].setup({
+vim.lsp.enable("emmet_ls")
+
+vim.lsp.config["intelephense"] = {
 	capabilities = capabilities,
-})
+}
+vim.lsp.enable("intelephense")
 
-require("lspconfig").lua_ls.setup({
+vim.lsp.config["lua_ls"] = {
 	settings = {
 		Lua = {
 			runtime = {
@@ -136,7 +140,92 @@ require("lspconfig").lua_ls.setup({
 			},
 		},
 	},
-})
+}
+
+vim.lsp.enable("lua_ls")
+
+-- vim.lsp.config["vtsls"] = {
+-- 	filetypes = { "vue", "typescript", "javascript", "javascriptreact", "typescriptreact" },
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		vtsls = {
+-- 			tsserver = {
+-- 				globalPlugins = {
+-- 					{
+-- 						name = "@vue/typescript-plugin",
+-- 						-- location = "/home/alvaro/.nvm/versions/node/v22.17.1/lib/node_modules/@vue/typescript-plugin",
+-- 						location = vim.fn.stdpath("data")
+-- 						.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+-- 						languages = { "typescript", "vue" },
+-- 						configNamespace = "typescript",
+-- 					},
+-- 				},
+-- 			},
+-- 		},
+-- 		typescript = {
+-- 			inlayHints = {
+-- 				enumMemberValues = {
+-- 					enabled = true,
+-- 				},
+-- 				functionLikeReturnTypes = {
+-- 					enabled = true,
+-- 				},
+-- 				parameterNames = { enabled = "all" },
+-- 				parameterTypes = {
+-- 					enabled = true,
+-- 					suppressWhenArgumentMatchesName = true,
+-- 				},
+-- 				propertyDeclarationTypes = {
+-- 					enabled = true,
+-- 				},
+-- 				variableTypes = {
+-- 					enabled = true,
+-- 				},
+-- 			},
+		-- },
+	-- },
+-- }
+
+-- vim.lsp.enable("vtsls")
+
+--vim.lsp.config["vue_ls"] = {
+
+--	on_init = function(client)
+--		client.handlers["tsserver/request"] = function(_, result, context)
+--			local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "vtsls" })
+--			if #clients == 0 then
+--				vim.notify(
+--					"No se pudo encontrar el cliente lsp `vtsls` , `vue_ls` no funcionaría sin él.",
+--					vim.log.levels.ERROR
+--				)
+--				return
+--			end
+--			local ts_client = clients[1]
+
+--			local param = unpack(result)
+--			local id, command, payload = unpack(param)
+--			ts_client:exec_cmd({
+--				title = "vue_request_forward", -- Puedes darle cualquier título ya que se usa para representar un comando en la interfaz de usuario, `:h Client:exec_cmd`
+--				command = "typescript.tsserverRequest",
+--				arguments = {
+--					command,
+--					payload,
+--				},
+--			}, { bufnr = context.bufnr }, function(_, r)
+--				local response = r and r.body
+--				-- TODO: manejar error o respuesta nula aquí, por ejemplo, registrar
+--				-- NOTA: NO devolver si hay un error o no hay respuesta, solo devolver nil a vue_ls para evitar fugas de memoria
+--				local response_data = { { id, response } }
+
+--				---@diagnostic disable-next-line: param-type-mismatch
+--				client:notify("tsserver/response", response_data)
+--			end)
+--		end
+--	end,
+--	capabilities = capabilities,
+--}
+
+--vim.lsp.enable("vue_ls")
 
 --local Group = require("colorbuddy.group").Group
 -- local g = require("colorbuddy.group").groups
@@ -147,4 +236,4 @@ require("lspconfig").lua_ls.setup({
 -- Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
 -- Group.new("CmpItemKind", g.Special)
 -- Group.new("CmpItemMenu", g.NonText)
-vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", {fg ="#6CC644"})
+vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
