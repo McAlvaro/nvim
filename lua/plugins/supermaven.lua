@@ -9,7 +9,7 @@ return {
 			},
 			disable_inline_completion = true,
 			disable_keymaps = true,
-            ignore_filetypes = { markdown = true },
+            ignore_filetypes = { markdown = true, ["copilot-chat"] = true },
 		})
 	end,
 }
