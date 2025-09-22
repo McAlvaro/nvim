@@ -1,28 +1,32 @@
-require('dap').adapters.node2 = {
+local get_install_path = function(name)
+	return vim.fn.expand("$MASON/packages/" .. name)
+end
+
+require("dap").adapters.node2 = {
 	type = "executable",
 	command = "node",
 	args = {
-		require("mason-registry").get_package("node-debug2-adapter"):get_install_path() .. "/out/src/nodeDebug.js",
+		get_install_path("node-debug2-adapter") .. "/out/src/nodeDebug.js",
 	},
 }
 
-require('dap').adapters.firefox = {
-    type = "executable",
-    command = "node",
-    args = {
-        require("mason-registry").get_package("firefox-debug-adapter"):get_install_path() .. "/dist/adapter.bundle.js",
-    },
+require("dap").adapters.firefox = {
+	type = "executable",
+	command = "node",
+	args = {
+		get_install_path("firefox-debug-adapter") .. "/dist/adapter.bundle.js",
+	},
 }
 
 for _, language in pairs({ "javascript", "typescript" }) do
-	require('dap').configurations[language] = {
+	require("dap").configurations[language] = {
 		{
 			name = "Launch Node against current file",
 			type = "node2",
 			request = "launch",
 			program = "${file}",
 			-- cwd = vim.uv.cwd(),
-            cwd = "${workspaceFolder}",
+			cwd = "${workspaceFolder}",
 			sourceMaps = true,
 			protocol = "inspector",
 			console = "integratedTerminal",
@@ -47,7 +51,7 @@ for _, language in pairs({ "javascript", "typescript" }) do
 end
 
 for _, language in pairs({ "javascriptreact", "typescriptreact" }) do
-	require('dap').configurations[language] = {
+	require("dap").configurations[language] = {
 		{
 			name = "Launch Firefox against localhost",
 			request = "launch",
@@ -59,4 +63,3 @@ for _, language in pairs({ "javascriptreact", "typescriptreact" }) do
 		},
 	}
 end
-

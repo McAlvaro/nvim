@@ -1,10 +1,14 @@
 local dap = require("dap")
 
+local get_install_path = function(name)
+	return vim.fn.expand("$MASON/packages/" .. name)
+end
+
 dap.adapters.php = {
 	type = "executable",
 	command = "node",
 	args = {
-		require("mason-registry").get_package("php-debug-adapter"):get_install_path() .. "/extension/out/phpDebug.js",
+		get_install_path("php-debug-adapter") .. "/extension/out/phpDebug.js",
 	},
 }
 
