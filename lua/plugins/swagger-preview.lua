@@ -1,6 +1,6 @@
 return {
 	"vinnymeller/swagger-preview.nvim",
-	build = "npm install -g swagger-ui-watcher",
-    lazy = true,
-    cmd = { "SwaggerPreview", "SwaggerPreviewStop", "SwaggerPreviewToggle" }
+	cmd = { "SwaggerPreview", "SwaggerPreviewStop", "SwaggerPreviewToggle" },
+	build = "npm i",
+	config = true,
 }
