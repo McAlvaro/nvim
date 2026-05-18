@@ -126,7 +126,9 @@ map('n', '<Leader>i', [[:lua vim.lsp.buf.hover() <CR>]], {})                    
 
 map('n', '<Leader>gr', [[:lua vim.lsp.buf.rename() <CR>]], {})                       -- Rename
 
-map('n', '<Leader>gf', [[:lua vim.lsp.buf.format{ async = true, filter = function(client) return filter_lsp_client(client) end} <CR>]], {})                   --Fomart
+map('n', '<Leader>gf', [[:lua require("conform").format({ async = true, lsp_fallback = true }) <CR>]], {})                   --Fomart
+
+map('n', '<Leader>vca', [[:lua vim.lsp.buf.code_action() <CR>]], {})                 -- Code Actions
 
 map('n', '<Leader>gn', [[:lua vim.diagnostic.goto_next() <CR>]], {})                 --Next
 

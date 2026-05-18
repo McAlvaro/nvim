@@ -8,8 +8,8 @@ return {
         },
 		"neovim/nvim-lspconfig",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-        "nvimtools/none-ls.nvim",
-        -- 'williamboman/nvim-lsp-installer',
+		-- "nvimtools/none-ls.nvim",
+		-- 'williamboman/nvim-lsp-installer',
         'hrsh7th/cmp-nvim-lsp-signature-help',
         'ray-x/lsp_signature.nvim'
 

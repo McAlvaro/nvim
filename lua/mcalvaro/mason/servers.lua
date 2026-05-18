@@ -8,6 +8,5 @@ return {
 	"lua_ls",
 	"ts_ls",
 	"vue_ls",
-    "diagnosticls"
 }
 
